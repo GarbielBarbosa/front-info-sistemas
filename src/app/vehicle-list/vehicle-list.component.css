@@ -1,0 +1,16 @@
+ngb-pagination ::ng-deep ul>li.active>a {
+  background-color: #f08211 !important;
+}
+
+.button {
+  margin-left: 10px;
+  background-color: #f08211;
+  width: 30px;
+  height: 30px;
+}
+
+.icon {
+  color: white;
+  font-size: 18px;
+  margin-top: -5px;
+}

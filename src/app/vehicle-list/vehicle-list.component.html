@@ -1,0 +1,102 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Veículos</h4>
+                        <p class="card-category"> Cadastre um novo Veiculo</p>
+                    </div>
+                    <div class="card-header card-header-warning card-header-icon" style="margin-left: auto !important;"
+                        [routerLink]="['new']">
+                        <div class="card-icon">
+                            <i class="material-icons">add</i>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <th>
+                                        ID
+                                    </th>
+                                    <th>
+                                        Placa
+                                    </th>
+                                    <th>
+                                        Chassi
+                                    </th>
+                                    <th>
+                                        Renavam
+                                    </th>
+                                    <th>
+                                        Modelo
+                                    </th>
+                                    <th>
+                                        Marca
+                                    </th>
+                                    <th>
+                                        Ano
+                                    </th>
+                                    <th>
+                                        Ações
+                                    </th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let x of vehicles">
+                                        <td>
+                                            {{x.id}}
+                                        </td>
+                                        <td>
+                                            {{x.placa}}
+                                        </td>
+                                        <td>
+                                            {{x.chassi}}
+                                        </td>
+                                        <td>
+                                            {{x.renavam}}
+                                        </td>
+                                        <td>
+                                            {{x.modelo}}
+                                        </td>
+                                        <td>
+                                            {{x.marca}}
+                                        </td>
+                                        <td>
+                                            {{x.ano}}
+                                        </td>
+                                        <td>
+                                            <button mat-mini-fab class="button" color="danger" [routerLink]="[x.id]">
+                                                <mat-icon class="icon">edit</mat-icon>
+                                            </button>
+                                            <button (click)="confirmDelete(content, x.id)" mat-mini-fab class="button"
+                                                color="danger">
+                                                <mat-icon class="icon">delete</mat-icon>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <ngb-pagination class="d-flex justify-content-end" [(collectionSize)]="size" (pageChange)="getVehicles($event)" 
+                                [maxSize]="5" [boundaryLinks]="true"></ngb-pagination>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Atenção</h4>
+    </div>
+    <div class="modal-body">
+        <h4 class="modal-title" id="modal-basic-title">Realmente deseja deletar o veiculo ?</h4>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="modal.close(true)">Deletar</button>
+        <button type="button" class="btn btn-outline-primary" (click)="modal.close(false)">Cancelar</button>
+    </div>
+</ng-template>

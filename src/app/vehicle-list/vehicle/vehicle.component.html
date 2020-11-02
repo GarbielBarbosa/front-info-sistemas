@@ -1,0 +1,69 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 *ngIf="type == eFormType.Create" class="card-title">Criar Veículo</h4>
+            <h4 *ngIf="type == eFormType.Edit" class="card-title">Editar Veículo</h4>
+            <p class="card-category">Preencha todos os campos</p>
+          </div>
+          <div *ngIf="!loading" class="card-body">
+            <form [formGroup]="form">
+              <div class="row">
+                <div class="col-md-2" *ngIf="type == eFormType.Edit">
+                  <mat-form-field class="example-full-width">
+                    <input formControlName="id" matInput placeholder="ID" readonly>
+                  </mat-form-field>
+                </div>
+                <div [class.col-md-4]="type == eFormType.Create" [class.col-md-2]="type == eFormType.Edit">
+                  <mat-form-field class="example-full-width">
+                    <input matInput formControlName="placa" placeholder="Placa" (blur)="validate()">
+                    <mat-error *ngIf="fc.placa.errors?.required">Placa é um campo obrigatório</mat-error>
+                    <mat-error *ngIf="fc.placa.errors?.invalid">Placa Inválida</mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input matInput formControlName="chassi" placeholder="Chassi" type="text">
+                    <mat-error *ngIf="fc.chassi.invalid">Chassi é um campo obrigatório</mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input matInput formControlName="renavam" placeholder="Renavam" type="text">
+                    <mat-error *ngIf="fc.renavam.invalid">Renavam é um campo obrigatório</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input matInput formControlName="modelo" placeholder="Modelo" type="text">
+                    <mat-error *ngIf="fc.modelo.invalid">Modelo é um campo obrigatório</mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input matInput formControlName="marca" placeholder="Marca" type="text">
+                    <mat-error *ngIf="fc.marca.invalid">Marca é um campo obrigatório</mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input matInput formControlName="ano" placeholder="Ano" type="number">
+                    <mat-error *ngIf="fc.ano.errors?.required">Ano é um campo obrigatório</mat-error>
+                    <mat-error *ngIf="fc.ano.errors?.min">O ano deve maior ou igual a {{fc.ano.errors?.min.min}}</mat-error>
+                    <mat-error *ngIf="fc.ano.errors?.max">O ano deve menor ou igual a {{fc.ano.errors?.max.max}}</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <button mat-raised-button (click)="onSubmit()" class="btn btn-danger pull-right">Salvar</button>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
